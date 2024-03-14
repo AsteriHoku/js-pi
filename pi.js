@@ -20,14 +20,12 @@ function getRandomDigit(iterations, label, isPi) {
     }
 
     let sum = 0n;
-    let count = 0n;
 
     for (const key in counts) {
         sum += BigInt(counts[key]);
-        count++;
     }
 
-    const avg = sum / count;
+    const avg = sum / BigInt(Object.keys(counts).length);
     console.log(`${label} loop - average: ${avg}`, counts);
     counts = {};
 }
