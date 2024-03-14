@@ -1,6 +1,7 @@
 const PI = require('pi');
 const piStr = PI(1000000, false);
 
+console.log('\nTake note of:\n\tcounts for each digit & how close they are to each other\n\taverage of the counts values\n');
 console.log('---- GENERATING RANDOM NUMBERS USING PI ----');
 //console.log(piStr);
 console.log(`Pi string length: ${piStr.length}\t(Should be equal to 1 million -> ${piStr.length === 1000000})`);
