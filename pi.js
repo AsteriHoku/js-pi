@@ -7,29 +7,15 @@ console.log(`Pi string length: ${piStr.length}\t(Should be equal to 1 million ->
 
 let counts = {};
 
-function getRandomPiDigit(iterations, label) {
+function getRandomDigit(iterations, label, isPi) {
     for (let i = 0; i < iterations; i++) {
-        const randomIndex = Math.floor(Math.random() * piStr.length);
-        const randomPiDigit = piStr.charAt(randomIndex);
-        counts[randomPiDigit] = (counts[randomPiDigit] ?? 0) + 1;
-      }
-      
-    let sum = 0n;
-    let count = 0n;
-
-    for (const key in counts) {
-        sum += BigInt(counts[key]);
-        count++;
-    }
-
-    const avg = sum / count;
-    console.log(`${label} loop - average: ${avg}`, counts);
-    counts = {};
-}
-
-function getRandomDigit(iterations, label) {
-    for (let i = 0; i < iterations; i++) {
-        const randomDigit = Math.floor(Math.random() * 10);
+        let randomDigit = 0;
+        if (isPi){
+            const randomIndex = Math.floor(Math.random() * piStr.length);
+            randomDigit = piStr.charAt(randomIndex);
+        } else {
+            randomDigit = Math.floor(Math.random() * 10);
+        }
         counts[randomDigit] = (counts[randomDigit] ?? 0) + 1;
     }
 
@@ -47,30 +33,30 @@ function getRandomDigit(iterations, label) {
 }
 
 let iterations = 1000;
-getRandomPiDigit(iterations, '1 thousand');
+getRandomDigit(iterations, '1 thousand', true);
 iterations = iterations * 10;
-getRandomPiDigit(iterations, '10 thousand');
+getRandomDigit(iterations, '10 thousand', true);
 iterations = iterations * 10;
-getRandomPiDigit(iterations, '100 thousand');
+getRandomDigit(iterations, '100 thousand', true);
 iterations = iterations * 10;
-getRandomPiDigit(iterations, '1 million');
+getRandomDigit(iterations, '1 million', true);
 iterations = iterations * 10;
-getRandomPiDigit(iterations, '10 million');
+getRandomDigit(iterations, '10 million', true);
 iterations = iterations * 10;
-getRandomPiDigit(iterations, '100 million');
+getRandomDigit(iterations, '100 million', true);
 
 console.log('---- GENERATING RANDOM NUMBERS USING Math.random() ----');
 iterations = 1000;
-getRandomDigit(iterations, '1 thousand');
+getRandomDigit(iterations, '1 thousand', false);
 iterations = iterations * 10;
-getRandomDigit(iterations, '10 thousand')
+getRandomDigit(iterations, '10 thousand', false);
 iterations = iterations * 10;
-getRandomDigit(iterations, '100 thousand')
+getRandomDigit(iterations, '100 thousand', false);
 iterations = iterations * 10;
-getRandomDigit(iterations, '1 million')
+getRandomDigit(iterations, '1 million', false);
 iterations = iterations * 10;
-getRandomDigit(iterations, '10 million')
+getRandomDigit(iterations, '10 million', false);
 iterations = iterations * 10;
-getRandomDigit(iterations, '100 million');
+getRandomDigit(iterations, '100 million', false);
 
 console.log('\t/Fin');
