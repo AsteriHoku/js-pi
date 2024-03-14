@@ -10,44 +10,39 @@ let counts = {};
 function getRandomPiDigit(iterations, label) {
     for (let i = 0; i < iterations; i++) {
         const randomIndex = Math.floor(Math.random() * piStr.length);
-        const randomPiDigit = BigInt(piStr.charAt(randomIndex));
-        counts[randomPiDigit] = (counts[randomPiDigit] ?? 0n) + 1n;
+        const randomPiDigit = piStr.charAt(randomIndex);
+        counts[randomPiDigit] = (counts[randomPiDigit] ?? 0) + 1;
       }
       
     let sum = 0n;
     let count = 0n;
 
     for (const key in counts) {
-        console.log(`Adding ${counts[key]} to ${sum}`);
-        sum += counts[key];
+        sum += BigInt(counts[key]);
         count++;
-        console.log('sum now ',sum);
     }
 
     const avg = sum / count;
-    console.log(avg);
-    console.log(`${iterations} loop - average: ${avg}`, counts);
+    console.log(`${label} loop - average: ${avg}`, counts);
     counts = {};
 }
 
 function getRandomDigit(iterations, label) {
     for (let i = 0; i < iterations; i++) {
-        const randomDigit = BigInt(Math.floor(Math.random() * 10));
-        counts[randomDigit] = (counts[randomDigit] ?? 0n) + 1n;
+        const randomDigit = Math.floor(Math.random() * 10);
+        counts[randomDigit] = (counts[randomDigit] ?? 0) + 1;
     }
 
     let sum = 0n;
     let count = 0n;
 
     for (const key in counts) {
-        sum += counts[key];
+        sum += BigInt(counts[key]);
         count++;
-        console.log('sum now ',sum);
     }
 
     const avg = sum / count;
-    console.log(avg);
-    console.log(`${iterations} loop - average: ${avg}`, counts);
+    console.log(`${label} loop - average: ${avg}`, counts);
     counts = {};
 }
 
