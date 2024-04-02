@@ -1,10 +1,26 @@
+require('ansi-colors');
 const PI = require('pi');
 const piStr = PI(1000000, false);
 
-console.log('\nTake note of:\n\tcounts for each digit & how close they are to each other\n\taverage of the counts values\n');
-console.log('---- GENERATING RANDOM NUMBERS USING PI ----');
-//console.log(piStr);
-console.log(`Pi string length: ${piStr.length}\t(Should be equal to 1 million -> ${piStr.length === 1000000})`);
+function printPiSlices(){
+    console.log('3.'+ piStr.substring(0,99).rfg())
+    let spaces = 1;
+    let s = 100;
+    let e = 198;
+    
+    while (s < e){
+        console.log(' '.repeat(spaces) + piStr.substring(s,e).rfg());
+        ++spaces;
+        s = e + 1;
+        e = s + (100-(spaces*2));
+    }
+    console.log(' '.repeat(spaces-1) + 'Pi');
+}
+
+printPiSlices();
+console.log('\nTake note of:\n\t-counts for each digit & how close they are to each other\n\t-average of the counts values\n');
+console.log('---- GENERATING RANDOM NUMBERS USING PI ----'.fg('blue').clearAll());
+console.log(`Pi string length: ${piStr.length}\t(Should be equal to 1 million -> ${`${piStr.length === 1000000}`.fg('green', 'bright').clearAll()})`);
 
 let counts = {};
 
@@ -27,7 +43,7 @@ function getRandomDigit(iterations, label, isPi) {
     }
 
     const avg = sum / BigInt(Object.keys(counts).length);
-    console.log(`${label} loop - average: ${avg}`, counts);
+    console.log(`${label} loop - average: ${`${avg}`.fg('cyan').clearAll()}`, counts);
     counts = {};
 }
 
@@ -44,7 +60,7 @@ getRandomDigit(iterations, '10 million', true);
 iterations = iterations * 10;
 getRandomDigit(iterations, '100 million', true);
 
-console.log('---- GENERATING RANDOM NUMBERS USING Math.random() ----');
+console.log('---- GENERATING RANDOM NUMBERS USING Math.random() ----'.fg('blue').clearAll());
 iterations = 1000;
 getRandomDigit(iterations, '1 thousand', false);
 iterations = iterations * 10;
